@@ -1,0 +1,33 @@
+{
+  "name": "lei-download",
+  "version": "0.1.0",
+  "description": "download file via http/https/local",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -t 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leizongmin/node-lei-download.git"
+  },
+  "keywords": [
+    "download",
+    "file"
+  ],
+  "author": "Zongmin Lei <leizongmin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leizongmin/node-lei-download/issues"
+  },
+  "homepage": "https://github.com/leizongmin/node-lei-download",
+  "dependencies": {
+    "debug": "^2.1.1",
+    "fs-extra": "^0.13.0",
+    "mkdirp": "^0.5.0",
+    "request": "^2.51.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.4.2"
+  }
+}
