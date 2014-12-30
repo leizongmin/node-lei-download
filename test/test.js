@@ -28,7 +28,7 @@ describe('download', function () {
     });
   });
 
-  it('download from URL', function (done) {
+  it('download from URL (specified filename)', function (done) {
     var specFilename = path.resolve(getTmpDir(), Date.now() +  '-1');
     download('https://www.npmjs.com/static/images/npm-logo.png', specFilename, function (err, filename) {
       should.equal(err, null);
@@ -52,7 +52,7 @@ describe('download', function () {
     });
   });
 
-  it('download from local', function (done) {
+  it('download from local (specified filename)', function (done) {
     var specFilename = path.resolve(getTmpDir(), Date.now() +  '-2');
     download(FILE2, specFilename, function (err, filename) {
       should.equal(err, null);
