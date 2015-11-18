@@ -1,6 +1,6 @@
 {
   "name": "lei-download",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "download file via http/https/local",
   "main": "index.js",
   "scripts": {
