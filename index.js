@@ -14,18 +14,18 @@ var debug = require('debug')('lei-download');
 var getTmpDir = os.tmpdir || os.tmpDir;
 
 
-function download (url, saveFilename, callback) {
-  if (typeof saveFilename === 'function') {
-    callback = saveFilename;
-    saveFilename = randomFilename();
+function download (source, target, callback) {
+  if (typeof target === 'function') {
+    callback = target;
+    target = randomFilename();
   }
-  if (isURL(url)) {
-    downloadFile(url, saveFilename, cb);
+  if (isURL(source)) {
+    downloadFile(source, target, cb);
   } else {
-    copyFile(url, saveFilename, cb);
+    copyFile(source, target, cb);
   }
   function cb (err) {
-    callback(err, saveFilename);
+    callback(err, target);
   }
 }
 
