@@ -17,7 +17,7 @@ describe('download', function () {
   var FILE1, FILE2;
 
   it('download from URL (random filename)', function (done) {
-    download('https://www.npmjs.com/static/images/npm-logo.png', function (err, filename) {
+    download('http://avatars.githubusercontent.com/u/841625', function (err, filename) {
       should.equal(err, null);
       filename.should.be.type('string');
       fs.exists(filename, function (ok) {
@@ -30,7 +30,7 @@ describe('download', function () {
 
   it('download from URL (specified filename)', function (done) {
     var specFilename = path.resolve(getTmpDir(), Date.now() +  '-1');
-    download('https://www.npmjs.com/static/images/npm-logo.png', specFilename, function (err, filename) {
+    download('http://avatars.githubusercontent.com/u/841625', specFilename, function (err, filename) {
       should.equal(err, null);
       filename.should.equal(specFilename);
       fs.exists(filename, function (ok) {

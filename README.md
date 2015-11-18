@@ -3,7 +3,7 @@ lei-download
 
 下载文件到本地
 
-```JavaScript
+```javascript
 var download = require('download');
 
 var url = 'https://www.npmjs.com/static/images/npm-logo.png';
@@ -15,6 +15,7 @@ download(url, 'logo.png', function (err, filename) {
   // download()的第一个参数可以为本地文件，此时相当于复制文件
 });
 ```
+
 
 授权协议
 ========
