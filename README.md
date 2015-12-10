@@ -1,42 +1,59 @@
 lei-download
 =================
 
-下载或复制文件
+## 安装
 
-```javascript
-var download = require('download');
-
-var url = 'https://www.npmjs.com/static/images/npm-logo.png';
-var target = __dirname + '/logo.png';
-download(url, target, function (downloadSize, totalSize) {
-  // downloadSize为已下载的文件字节数
-  // totalSize为文件总字节数，为null表示无法获取
-  // 此函数可省略
-}, function (err, filename) {
-  if (err) throw err;
-  // filename为实际保存到本地的文件名，本例中filename=logo.png
-  // download()的第二个参数可省略，程序会自动生成一个临时文件
-  // 临时文件存储在系统的临时文件夹，可以通过download.tmpDir来更改
-  // download()的第一个参数可以为本地文件，此时相当于复制文件
-});
+```bash
+$ npm install lei-download --save
 ```
 
-详细使用方法如下：
+## 使用方法
 
-+ `download(source, callback);`
-+ `download(source, progress, callback);`
-+ `download(source, target, callback);`
-+ `download(source, target, progress, callback);`
+```javascript
+const download = require('lei-download');
 
-参数：
+let source = '一个URL或者本地文件名';
+let target = '要存储到的本地位置，null|false|undefined表示自动生成一个临时文件';
+// 用于获取进度通知的函数，可以省略
+let progress = (size, total) => console.log(`进度：${size}/${total}`);
 
-+ `source` 源文件，可以为本地文件或URL（`http://`或`https://`开头）
-+ `target` 目标文件，可省略，默认生成一个在本地临时目录的随机文件名
-+ `progress` 下载进度，可省略
-+ `callback` 回调函数
+download(source, target, progress)
+  .then(filename => console.log(`已保存到：${filename}`))
+  .catch(err => console.log(`出错：${err}`));
+
+// 也可以使用callback模式
+download(source, target, progress, (err, filename) => {
+  if (err) console.log(`出错：${err}`);
+  else console.log(`已保存到：${filename}`);
+});
+```
 
 
 授权协议
 ========
 
-基于MIT协议发布
+```
+The MIT License (MIT)
+
+Copyright (c) 2014-2015 Zongmin Lei <leizongmin@gmail.com>
+http://ucdok.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
