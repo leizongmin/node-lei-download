@@ -32,12 +32,14 @@ export default function copyFile(source, target, progress, callback) {
     let copySize = 0;
     ss.on('data', data => {
       copySize += data.length;
+      ts.write(data);
       debug('copy file progress: %s/%s', copySize, stats.size);
       progress && progress(copySize, stats.size);
     });
 
-    ss.on('end', _ => callback(null, target));
-
-    ss.pipe(ts);
+    ss.on('end', _ => {
+      ts.end();
+      process.nextTick(() => callback(null, target));
+    });
   });
 }
