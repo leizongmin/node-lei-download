@@ -40,7 +40,8 @@ export default function downloadFile(url, target, progress, callback) {
         debug('progress: %s/%s', downloadSize, totalSize);
         progress && progress(downloadSize, totalSize);
       });
-      res.on('end', _ => callback(null, target));
     })
     .pipe(s);
+
+    s.on('close', () => callback(null, target));
 }

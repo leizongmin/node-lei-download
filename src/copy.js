@@ -39,7 +39,7 @@ export default function copyFile(source, target, progress, callback) {
 
     ss.on('end', _ => {
       ts.end();
-      process.nextTick(() => callback(null, target));
+      ts.on('close', () => callback(null, target));
     });
   });
 }
