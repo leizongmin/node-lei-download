@@ -19,11 +19,6 @@ let target = '要存储到的本地位置，null|false|undefined表示自动生�
 // 用于获取进度通知的函数，可以省略
 let progress = (size, total) => console.log(`进度：${ size }/${ total }`);
 
-download(source, target, progress)
-  .then(filename => console.log(`已保存到：${ filename }`))
-  .catch(err => console.log(`出错：${ err }`));
-
-// 也可以使用callback模式
 download(source, target, progress, (err, filename) => {
   if (err) console.log(`出错：${ err }`);
   else console.log(`已保存到：${ filename }`);
