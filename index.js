@@ -1,7 +1,9 @@
+'use strict';
+
 /**
  * lei-download
  *
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-module.exports = require('./src');
+module.exports = require('./lib');

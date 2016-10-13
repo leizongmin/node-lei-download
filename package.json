@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "mocha -t 10000",
-    "lint": "eslint src test --fix"
+    "lint": "eslint lib test --fix"
   },
   "repository": {
     "type": "git",
