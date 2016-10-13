@@ -15,6 +15,12 @@ export default function copyFile(source, target, progress, callback) {
   const debug = utils.debug(`copy: ${ source } => ${ target }`);
   debug('start');
 
+  // 如果 source = target 则不进行任何操作
+  if (source === target) {
+    debug('source and target are the same file: %s', source);
+    return callback(null, target);
+  }
+
   fs.stat(source, (err, stats) => {
     if (err) return callback(err);
 

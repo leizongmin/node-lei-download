@@ -8,22 +8,26 @@ const os = require('os');
 const getTmpDir = os.tmpdir || os.tmpDir;
 const fs = require('fs');
 const path = require('path');
-const should = require('should');
+const assert = require('assert');
 const download = require('../');
 
 
 describe('download', function () {
 
-  let FILE1, FILE2;
+  let FILE1, FILE2, FILE1_SIZE, FILE2_SIZE;
 
   it('download from URL (random filename)', function (done) {
     download('http://avatars.githubusercontent.com/u/841625', function (err, filename) {
-      should.equal(err, null);
-      filename.should.be.type('string');
+      assert.equal(err, null);
+      assert.equal(typeof filename, 'string');
       fs.exists(filename, function (ok) {
-        ok.should.be.true;
+        assert.equal(ok, true);
         FILE1 = filename;
-        done();
+        fs.stat(filename, function (err, stats) {
+          assert.equal(err, null);
+          FILE1_SIZE = stats.size;
+          done();
+        });
       });
     });
   });
@@ -31,22 +35,26 @@ describe('download', function () {
   it('download from URL (specified filename)', function (done) {
     const specFilename = path.resolve(getTmpDir(), Date.now() + '-1');
     download('http://avatars.githubusercontent.com/u/841625', specFilename, function (err, filename) {
-      should.equal(err, null);
-      filename.should.equal(specFilename);
+      assert.equal(err, null);
+      assert.equal(filename, specFilename);
       fs.exists(filename, function (ok) {
-        ok.should.be.true;
+        assert.equal(ok, true);
         FILE2 = filename;
-        done();
+        fs.stat(filename, function (err, stats) {
+          assert.equal(err, null);
+          FILE2_SIZE = stats.size;
+          done();
+        });
       });
     });
   });
 
   it('download from local (random filename)', function (done) {
     download(FILE1, function (err, filename) {
-      should.equal(err, null);
-      filename.should.be.type('string');
+      assert.equal(err, null);
+      assert.equal(typeof filename, 'string');
       fs.exists(filename, function (ok) {
-        ok.should.be.true;
+        assert.equal(ok, true);
         done();
       });
     });
@@ -55,10 +63,10 @@ describe('download', function () {
   it('download from local (specified filename)', function (done) {
     const specFilename = path.resolve(getTmpDir(), Date.now() + '-2');
     download(FILE2, specFilename, function (err, filename) {
-      should.equal(err, null);
-      filename.should.equal(specFilename);
+      assert.equal(err, null);
+      assert.equal(filename, specFilename);
       fs.exists(filename, function (ok) {
-        ok.should.be.true;
+        assert.equal(ok, true);
         done();
       });
     });
@@ -67,11 +75,33 @@ describe('download', function () {
   it('download from local (make parent dir)', function (done) {
     const specFilename = path.resolve(getTmpDir(), Date.now() + '/1/2/3/4/5');
     download(FILE2, specFilename, function (err, filename) {
-      should.equal(err, null);
-      filename.should.equal(specFilename);
+      assert.equal(err, null);
+      assert.equal(filename, specFilename);
       fs.exists(filename, function (ok) {
-        ok.should.be.true;
+        assert.equal(ok, true);
         done();
+      });
+    });
+  });
+
+  it('download from local (source and target are the same name)', function (done) {
+    const specFilename = path.resolve(getTmpDir(), Date.now() + '-4');
+    // make a copy
+    download(FILE2, specFilename, function (err, filename) {
+      assert.equal(err, null);
+      assert.equal(filename, specFilename);
+      fs.exists(filename, function (ok) {
+        assert.equal(ok, true);
+        // source and target are the same name
+        download(specFilename, specFilename, function (err, filename) {
+          assert.equal(err, null);
+          assert.equal(filename, specFilename);
+          fs.stat(filename, function (err, stats) {
+            assert.equal(err, null);
+            assert.equal(stats.size, FILE2_SIZE);
+            done();
+          });
+        });
       });
     });
   });
