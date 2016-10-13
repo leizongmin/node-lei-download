@@ -4,17 +4,17 @@
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-var os = require('os');
-var getTmpDir = os.tmpdir || os.tmpDir;
-var fs = require('fs');
-var path = require('path');
-var should = require('should');
-var download = require('../');
+const os = require('os');
+const getTmpDir = os.tmpdir || os.tmpDir;
+const fs = require('fs');
+const path = require('path');
+const should = require('should');
+const download = require('../');
 
 
 describe('download', function () {
 
-  var FILE1, FILE2;
+  let FILE1, FILE2;
 
   it('download from URL (random filename)', function (done) {
     download('http://avatars.githubusercontent.com/u/841625', function (err, filename) {
@@ -29,7 +29,7 @@ describe('download', function () {
   });
 
   it('download from URL (specified filename)', function (done) {
-    var specFilename = path.resolve(getTmpDir(), Date.now() +  '-1');
+    const specFilename = path.resolve(getTmpDir(), Date.now() + '-1');
     download('http://avatars.githubusercontent.com/u/841625', specFilename, function (err, filename) {
       should.equal(err, null);
       filename.should.equal(specFilename);
@@ -53,7 +53,7 @@ describe('download', function () {
   });
 
   it('download from local (specified filename)', function (done) {
-    var specFilename = path.resolve(getTmpDir(), Date.now() +  '-2');
+    const specFilename = path.resolve(getTmpDir(), Date.now() + '-2');
     download(FILE2, specFilename, function (err, filename) {
       should.equal(err, null);
       filename.should.equal(specFilename);
@@ -65,7 +65,7 @@ describe('download', function () {
   });
 
   it('download from local (make parent dir)', function (done) {
-    var specFilename = path.resolve(getTmpDir(), Date.now() +  '/1/2/3/4/5');
+    const specFilename = path.resolve(getTmpDir(), Date.now() + '/1/2/3/4/5');
     download(FILE2, specFilename, function (err, filename) {
       should.equal(err, null);
       filename.should.equal(specFilename);
