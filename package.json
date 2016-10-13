@@ -3,6 +3,10 @@
   "version": "0.4.2",
   "description": "download file via http/https/local",
   "main": "index.js",
+  "files":[
+    "index.js",
+    "lib"
+  ],
   "scripts": {
     "test": "npm run compile && mocha -t 10000 --compilers js:babel-register",
     "compile": "babel -d lib/ src/",
