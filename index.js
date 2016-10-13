@@ -4,4 +4,4 @@
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-module.exports = require('./lib').default;
+module.exports = require('./src');

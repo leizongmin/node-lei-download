@@ -11,7 +11,6 @@ const path = require('path');
 const assert = require('assert');
 const download = require('../');
 
-
 describe('download', function () {
 
   let FILE1, FILE2, FILE1_SIZE, FILE2_SIZE;

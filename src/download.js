@@ -4,13 +4,11 @@
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-import fs from 'fs';
-import request from 'request';
-import * as utils from './utils';
+const fs = require('fs');
+const request = require('request');
+const utils = require('./utils');
 
-const debug = utils.debug('download');
-
-export default function downloadFile(url, target, progress, callback) {
+module.exports = function downloadFile(url, target, progress, callback) {
   callback = utils.callback(callback);
   const debug = utils.debug(`download: ${ url } => ${ target }`);
   debug('start');
@@ -23,7 +21,7 @@ export default function downloadFile(url, target, progress, callback) {
 
   let totalSize = 0;
   let downloadSize = 0;
-  const req = request
+  request
     .get({
       url,
       encoding: null,
@@ -44,4 +42,4 @@ export default function downloadFile(url, target, progress, callback) {
     .pipe(s);
 
   s.on('close', () => callback(null, target));
-}
+};

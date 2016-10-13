@@ -4,11 +4,12 @@
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-import path from 'path';
-import mkdirp from 'mkdirp';
-import { randomFilename, isURL } from './utils';
-import copyFile from './copy';
-import downloadFile from './download';
+const path = require('path');
+const mkdirp = require('mkdirp');
+const randomFilename = require('./utils').randomFilename;
+const isURL = require('./utils').isURL;
+const copyFile = require('./copy');
+const downloadFile = require('./download');
 
 
 /*
@@ -20,7 +21,7 @@ import downloadFile from './download';
  download(source, target, callback);
  download(source, target, progress, callback);
 */
-export default function download(...args) {
+module.exports = function download(...args) {
   let source, target, progress, callback;
   if (args.length < 2) {
     throw new TypeError('invalid argument number');
@@ -51,4 +52,4 @@ export default function download(...args) {
       copyFile(source, target, progress, callback);
     }
   });
-}
+};

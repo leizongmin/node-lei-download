@@ -8,9 +8,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "npm run compile && mocha -t 10000 --compilers js:babel-register",
-    "compile": "babel -d lib/ src/",
-    "prepublish": "npm run compile",
+    "test": "mocha -t 10000",
     "lint": "eslint src test --fix"
   },
   "repository": {
@@ -33,11 +31,6 @@
     "request": "^2.65.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.2.0",
-    "babel-core": "^6.2.0",
-    "babel-preset-es2015-node4": "^2.0.2",
-    "babel-preset-stage-3": "^6.1.18",
-    "babel-register": "^6.14.0",
     "mocha": "^2.1.0"
   },
   "engines": {

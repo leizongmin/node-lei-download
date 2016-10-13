@@ -4,13 +4,10 @@
  * @author Zongmin Lei <leizongmin@gmail.com>
  */
 
-import path from 'path';
-import fs from 'fs';
-import * as utils from './utils';
+const fs = require('fs');
+const utils = require('./utils');
 
-const debug = utils.debug('download');
-
-export default function copyFile(source, target, progress, callback) {
+module.exports = function copyFile(source, target, progress, callback) {
   callback = utils.callback(callback);
   const debug = utils.debug(`copy: ${ source } => ${ target }`);
   debug('start');
@@ -48,4 +45,4 @@ export default function copyFile(source, target, progress, callback) {
       ts.on('close', () => callback(null, target));
     });
   });
-}
+};
