@@ -6,20 +6,20 @@
 
 import path from 'path';
 import fs from 'fs';
-import * as utils from './utils'
+import * as utils from './utils';
 
-let debug = utils.debug('download');
+const debug = utils.debug('download');
 
 export default function copyFile(source, target, progress, callback) {
   callback = utils.callback(callback);
-  let debug = utils.debug(`copy: ${source} => ${target}`);
+  const debug = utils.debug(`copy: ${ source } => ${ target }`);
   debug('start');
 
   fs.stat(source, (err, stats) => {
     if (err) return callback(err);
 
-    let ss = fs.createReadStream(source);
-    let ts = fs.createWriteStream(target);
+    const ss = fs.createReadStream(source);
+    const ts = fs.createWriteStream(target);
     ss.on('error', err => {
       debug('open source file error: %s', err);
       callback(err);

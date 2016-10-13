@@ -6,7 +6,7 @@
 
 import path from 'path';
 import mkdirp from 'mkdirp';
-import {randomFilename, isURL} from './utils';
+import { randomFilename, isURL } from './utils';
 import copyFile from './copy';
 import downloadFile from './download';
 
@@ -21,7 +21,7 @@ import downloadFile from './download';
  download(source, target, progress, callback);
 */
 export default function download(...args) {
-  var source, target, progress, callback;
+  let source, target, progress, callback;
   if (args.length < 2) {
     throw new TypeError('invalid argument number');
   }
