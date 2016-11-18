@@ -28,7 +28,7 @@
   "dependencies": {
     "debug": "2.2.0",
     "mkdirp": "0.5.1",
-    "request": "2.75.0"
+    "request": "2.79.0"
   },
   "devDependencies": {
     "mocha": "3.1.2"
