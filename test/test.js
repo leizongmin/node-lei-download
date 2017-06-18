@@ -50,6 +50,23 @@ describe('download', function () {
     });
   });
 
+  it('download from URL (no protocol name)', function (done) {
+    const specFilename = path.resolve(getTmpDir(), Date.now() + '-1');
+    download('//avatars.githubusercontent.com/u/841625', specFilename, function (err, filename) {
+      assert.equal(err, null);
+      assert.equal(filename, specFilename);
+      fs.exists(filename, function (ok) {
+        assert.equal(ok, true);
+        FILE2 = filename;
+        fs.stat(filename, function (err, stats) {
+          assert.equal(err, null);
+          FILE2_SIZE = stats.size;
+          done();
+        });
+      });
+    });
+  });
+
   it('download from local (random filename)', function (done) {
     download(FILE1, function (err, filename) {
       assert.equal(err, null);
