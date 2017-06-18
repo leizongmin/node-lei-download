@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/**
+ * lei-download
+ *
+ * @author Zongmin Lei <leizongmin@gmail.com>
+ */
+
+const path = require('path');
+const parseURL = require('url').parse;
+const argv = require('yargs').argv;
+const ProgressBar = require('progress');
+const download = require('../');
+const utils = require('../lib/utils');
+const pkgInfo = require('../package');
+
+function main() {
+  if (argv._.length < 1) {
+    return showHelp();
+  }
+
+  const url = argv._[0];
+  const filename = parseURL(url).pathname.split('/').pop();
+  const target = path.resolve(argv._[1] || filename || utils.randomString(20));
+  console.log('%s', url);
+
+  let bar;
+  let currentSize = 0;
+  download(url, target, (size, total) => {
+    if (!bar) {
+      bar = new ProgressBar('    downloading [:bar] :rate/bps :percent remaining :etas', {
+        total: total,
+        width: 60,
+        head: '>',
+        complete: '=',
+        incomplete: '-',
+      });
+    }
+    bar.tick(size - currentSize);
+    currentSize = size;
+  }, (err, filename) => {
+    console.log('');
+    if (err) console.error(`Download failed: ${ err.message }`);
+    else console.log(`Save to: ${ filename }`);
+    console.log('');
+  });
+}
+
+function showHeader() {
+  console.log('');
+  console.log('lei-download v%s', pkgInfo.version);
+  console.log('    By %s', pkgInfo.author);
+  console.log('');
+}
+
+function showHelp() {
+  console.log('Usage:');
+  console.log('');
+  console.log('    $ download <url>');
+  console.log('    $ download <url> <save_file>');
+  console.log('');
+  console.log('Example:');
+  console.log('');
+  console.log('    $ download http://avatars.githubusercontent.com/u/841625 logo.png');
+  console.log('');
+}
+
+showHeader();
+main();

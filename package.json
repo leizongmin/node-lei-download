@@ -5,8 +5,12 @@
   "main": "index.js",
   "files": [
     "index.js",
-    "lib"
+    "lib",
+    "bin"
   ],
+  "bin": {
+    "download": "bin/download"
+  },
   "scripts": {
     "test": "mocha -t 10000",
     "lint": "eslint lib test --fix"
@@ -28,7 +32,9 @@
   "dependencies": {
     "debug": "2.2.0",
     "mkdirp": "0.5.1",
-    "request": "2.75.0"
+    "progress": "^2.0.0",
+    "request": "2.75.0",
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "mocha": "3.1.2"

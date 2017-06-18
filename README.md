@@ -3,21 +3,29 @@ lei-download
 
 ## 安装
 
+模块安装方法：
+
 ```bash
 $ npm install lei-download --save
 ```
 
-## 使用方法
+**download** 命令安装方法：
+
+```bash
+$ npm install lei-download -g
+```
+
+## 模块使用方法
 
 ```javascript
 'use strict';
 
 const download = require('lei-download');
 
-let source = '一个URL或者本地文件名';
-let target = '要存储到的本地位置，null|false|undefined表示自动生成一个临时文件';
+const source = '一个URL或者本地文件名';
+const target = '要存储到的本地位置，null|false|undefined表示自动生成一个临时文件';
 // 用于获取进度通知的函数，可以省略
-let progress = (size, total) => console.log(`进度：${ size }/${ total }`);
+const progress = (size, total) => console.log(`进度：${ size }/${ total }`);
 
 download(source, target, progress, (err, filename) => {
   if (err) console.log(`出错：${ err }`);
@@ -25,9 +33,21 @@ download(source, target, progress, (err, filename) => {
 });
 ```
 
+## 命令使用方法
 
-授权协议
-========
+```bash
+$ download <一个URL或者本地文件名> [要存储到的本地位置]
+```
+
+比如：
+
+```bash
+$ download http://avatars.githubusercontent.com/u/841625 logo.png
+```
+
+其中存储位置可省略。
+
+## 授权协议
 
 ```
 The MIT License (MIT)
