@@ -1,9 +1,30 @@
-lei-download
-=================
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![David deps][david-image]][david-url]
+[![node version][node-image]][node-url]
+[![npm download][download-image]][download-url]
+[![npm license][license-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/lei-download.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/lei-download
+[travis-image]: https://img.shields.io/travis/leizongmin/node-lei-download.svg?style=flat-square
+[travis-url]: https://travis-ci.org/leizongmin/node-lei-download
+[coveralls-image]: https://img.shields.io/coveralls/leizongmin/node-lei-download.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/leizongmin/node-lei-download?branch=master
+[david-image]: https://img.shields.io/david/leizongmin/node-lei-download.svg?style=flat-square
+[david-url]: https://david-dm.org/leizongmin/node-lei-download
+[node-image]: https://img.shields.io/badge/node.js-%3E=_4.0-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+[download-image]: https://img.shields.io/npm/dm/lei-download.svg?style=flat-square
+[download-url]: https://npmjs.org/package/lei-download
+[license-image]: https://img.shields.io/npm/l/lei-download.svg
+
+# lei-download
 
 ## 安装
 
-模块安装方法：
+模块安装方法（支持 TypeScript）：
 
 ```bash
 $ npm install lei-download --save

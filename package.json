@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "download file via http/https/local",
   "main": "index.js",
+  "typings": "index.d.ts",
   "files": [
     "index.js",
+    "index.d.ts",
     "lib",
     "bin"
   ],
