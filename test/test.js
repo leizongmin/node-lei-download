@@ -17,6 +17,15 @@ describe('download', function () {
 
   let FILE1, FILE2, FILE1_SIZE, FILE2_SIZE;
 
+  it('download failed', function (done) {
+    download('http://hahaha-xxx-yyy', function (err, filename) {
+      assert.notEqual(err, null);
+      assert.equal(err.code, 'ENOTFOUND');
+      console.log(err);
+      done();
+    });
+  });
+
   it('download from URL (random filename)', function (done) {
     download('http://avatars.githubusercontent.com/u/841625', function (err, filename) {
       assert.equal(err, null);
