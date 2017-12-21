@@ -32,14 +32,14 @@
   },
   "homepage": "https://github.com/leizongmin/node-lei-download",
   "dependencies": {
-    "debug": "2.2.0",
+    "debug": "3.1.0",
     "mkdirp": "0.5.1",
     "progress": "^2.0.0",
-    "request": "2.75.0",
-    "yargs": "^8.0.2"
+    "request": "2.83.0",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
-    "mocha": "3.1.2"
+    "mocha": "4.0.1"
   },
   "engines": {
     "node": ">= 4.0.0"
