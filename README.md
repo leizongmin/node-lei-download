@@ -22,6 +22,8 @@
 
 # lei-download
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/leizongmin/node-lei-download.svg)](https://greenkeeper.io/)
+
 ## 安装
 
 模块安装方法（支持 TypeScript）：
